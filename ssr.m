@@ -1,5 +1,7 @@
-IMG = imread('img1.jpg');
-c=3;
+clear all;
+clc;
+IMG = imread('img2.jpg');
+c=80;
 [wid,len,height]=size(IMG);
 sum=0;
 si = c*2+1;
@@ -17,13 +19,19 @@ for t=1:3
     q=conv2(w,f,'same');
     q=double(q);
     newIMG(:,:,t)=(log(w)-log(q));
+    a=newIMG;
     maxium=max(max(newIMG(:,:,t)));
-    minium=min(min(newIMG(:,:,t)));
+%     minium=min(min(newIMG(:,:,t)));
+    minium=0;
     for i=1:wid
         for j=1:len
-            newIMG(i,j,t)=(newIMG(i,j,t)-minium)/(maxium-minium);
+            if newIMG(i,j,t)<0
+                newIMG(i,j,t)=0;
+            end
+            newIMG(i,j,t)=255*((newIMG(i,j,t)-minium)/(maxium-minium));
         end
     end
+%     newIMG(:,:,t)=round(exp(newIMG(:,:,t).*5.54));
 end
 subplot(1,2,1);imshow(IMG);title('原始图像');
 subplot(1,2,2);imshow(newIMG);title('SSR增强后的图像');

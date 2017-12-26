@@ -1,3 +1,5 @@
+clear all;
+clc;
 RGB = imread('img1.jpg'); % ¶ÁÈ¡²ÊÉ«Í¼
 subplot(121);
 imshow(RGB);

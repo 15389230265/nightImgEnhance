@@ -1,0 +1,22 @@
+clear all;
+clc;
+img = imread('img1.jpg');  
+imshow(img);
+rimg = img(:,:,1);  
+gimg = img(:,:,2);  
+bimg = img(:,:,3);  
+resultr = adapthisteq(rimg);  
+resultg = adapthisteq(gimg);  
+resultb = adapthisteq(bimg);  
+result = cat(3, resultr, resultg, resultb);  
+figure();
+imshow(result); 
+
+cform2lab = makecform('srgb2lab');  
+LAB = applycform(img, cform2lab);  
+L = LAB(:,:,1);  
+LAB(:,:,1) = adapthisteq(L);  
+cform2srgb = makecform('lab2srgb');  
+J = applycform(LAB, cform2srgb);  
+figure();
+imshow(J);  
