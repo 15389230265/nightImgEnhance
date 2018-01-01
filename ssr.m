@@ -19,9 +19,9 @@ for t=1:3
     w=IMG(:,:,t);
     w=double(w);
     f=k.*f;
-    q=conv2(w,f,'same');
+    q=imfilter(w,f,'replicate','conv');
     q=double(q);
-    newIMG(:,:,t)=(log(w)-log(q));
+    newIMG(:,:,t)=(log(w+1.)-log(q));
     a=newIMG;
 end
 for t=1:3
