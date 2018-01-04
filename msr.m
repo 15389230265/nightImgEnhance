@@ -29,7 +29,7 @@ end
 % img1=exp(img1);
 figure();imshow(img1);
 %---------------------------É«²Ê»Ö¸´---------------------------------------
-alpha  = 130.;
+alpha  = 128.;
 gain   = 1.;
 offset = 0.;
 logl=log(double(IMG(:,:,1))+double(IMG(:,:,2))+double(IMG(:,:,3))+3.);
@@ -54,4 +54,5 @@ t(t>255)=255;
 % img1=uint8(reshape(t,wid,len,3));
 img1=uint8(reshape(t,wid,len,3));
 figure();imshow(img1);
-                    
+img3=imadjust(img1,[],[],2.2);
+figure();imshow(img3);
